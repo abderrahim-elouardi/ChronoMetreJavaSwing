@@ -1,7 +1,6 @@
 import java.time.Duration;
 import java.time.LocalTime;
 import javax.swing.JLabel;
-import javax.swing.SwingUtilities;
 
 public class Chrono implements Runnable {
 
@@ -42,11 +41,6 @@ public class Chrono implements Runnable {
             long s = duration.toSeconds() % 60;
             long ms = duration.toMillis() % 1000;
 
-//            SwingUtilities.invokeLater(() ->
-//                textChrono.setText(
-//                    String.format("%02d:%02d:%02d:%03d", h, m, s, ms)
-//                )
-//            );
             this.textChrono.setText(h+":"+m+":"+s+":"+ms);
 
             try {
@@ -57,7 +51,6 @@ public class Chrono implements Runnable {
         }
     }
 
-    // ⏸️ appelée depuis l’UI
     public void pause() {
         paused = true;
         if(this.lastDuration==null){
@@ -68,7 +61,6 @@ public class Chrono implements Runnable {
         }
     }
 
-    // ▶️ appelée depuis l’UI
     public void resume() {
         synchronized (lock) {
             paused = false;
@@ -76,7 +68,6 @@ public class Chrono implements Runnable {
         }
     }
 
-    // ⛔ stop définitif
     public void stop() {
         running = false;
         resume();
