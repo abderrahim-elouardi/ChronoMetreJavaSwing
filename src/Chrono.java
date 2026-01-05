@@ -40,8 +40,13 @@ public class Chrono implements Runnable {
             long m = duration.toMinutes() % 60;
             long s = duration.toSeconds() % 60;
             long ms = duration.toMillis() % 1000;
-
-            this.textChrono.setText(h+":"+m+":"+s+":"+ms);
+            
+            String hh = h<10 ? "0"+h : String.valueOf(h); 
+            String mm= m<10 ? "0"+m : String.valueOf(m); 
+            String ss = s<10 ? "0"+s : String.valueOf(s); 
+            String mss = ms<10 ? "0"+ms : String.valueOf(ms);
+            
+            this.textChrono.setText(hh+":"+mm+":"+ss+":"+mss);
 
             try {
                 Thread.sleep(50); 
